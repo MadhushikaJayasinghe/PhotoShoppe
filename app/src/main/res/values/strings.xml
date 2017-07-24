@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">PhotoShoppe</string>
+    <string name="main_view_text_log_in">Hi, Login to continue...</string>
+    <string name="main_view_text_sign_in">If you do not have account please sign in </string>
+    <string name="main_view_button_log_in">Log In</string>
+    <string name="main_view_button_sign_in">Sign In </string>
+
+</resources>
