@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,74 +11,79 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:gravity="center_horizontal">
+        android:gravity="fill_horizontal">
 
         <LinearLayout
-            android:id="@+id/linear_layout_user_name"
-            android:layout_width="wrap_content"
+            android:id="@+id/initial_layout_user_name"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/user_name_label"
+                android:id="@+id/initial_user_name_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="3dp"
                 android:text="User Name" />
 
             <EditText
-                android:id="@+id/edit_text_name"
-                android:layout_width="wrap_content"
+                android:id="@+id/initial_name"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="3dp" />
+                android:padding="3dp"
+                android:hint="Enter user name"/>
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linear_layout_password"
-            android:layout_width="wrap_content"
+            android:id="@+id/initial_layout_email"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/password_name_label"
+                android:id="@+id/initial_email_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="3dp"
                 android:text="Email" />
 
             <EditText
-                android:id="@+id/edit_text_password"
-                android:layout_width="wrap_content"
+                android:id="@+id/initial_email"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textWebEmailAddress"
-                android:padding="3dp" />
+                android:padding="3dp"
+                android:hint="sample@gmai.com"/>
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linear_layout_email"
-            android:layout_width="wrap_content"
+            android:id="@+id/initial_layout_password"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/user_name_email"
+                android:id="@+id/initial_label_password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="3dp"
                 android:text="Password" />
 
             <EditText
-                android:id="@+id/edit_text_email"
-                android:layout_width="wrap_content"
+                android:id="@+id/initial_password"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="3dp" />
+                android:padding="3dp"
+                android:hint="Enter Password"/>
         </LinearLayout>
         <Button
             android:id="@+id/sign_in_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Sign In"
-            android:padding="5dp"/>
+            android:padding="5dp"
+            android:layout_gravity="center"
+            android:onClick="onClick"/>
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>

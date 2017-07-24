@@ -20,7 +20,9 @@
         <activity android:name=".InitialActivity" />
         <activity android:name=".ViewImageList" />
         <activity android:name=".ViewImage" />
-        <activity android:name=".ViewImageWithButtons"></activity>
+        <activity android:name=".ViewImageWithButtons" />
+        <activity android:name=".PhotographersList" />
+        <activity android:name=".DisplayDetails"></activity>
     </application>
 
 </manifest>

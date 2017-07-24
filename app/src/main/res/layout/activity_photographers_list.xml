@@ -4,12 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.madhushikabasnayake.photoshoppe_madhushika.ViewImage">
-
-    <ImageView
-        android:id="@+id/selected_image"
-        android:layout_height="match_parent"
+    tools:context="com.example.madhushikabasnayake.photoshoppe_madhushika.PhotographersList">
+    <ListView
+        android:id="@+id/detail_list"
         android:layout_width="match_parent"
-        android:onClick="onClick" />
-
+        android:layout_height="wrap_content"
+        android:padding="5dp">
+    </ListView>
 </LinearLayout>
