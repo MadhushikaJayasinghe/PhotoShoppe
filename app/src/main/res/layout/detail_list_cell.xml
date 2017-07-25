@@ -19,12 +19,12 @@
 
     </LinearLayout>
     <TextView
-        android:id="@+id/telephone_number"
+        android:id="@+id/list_telephone_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="5dp"/>
     <TextView
-        android:id="@+id/email_address"
+        android:id="@+id/list_email_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="5dp"/>

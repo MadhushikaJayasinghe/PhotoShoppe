@@ -27,7 +27,7 @@ public class LogInActivity extends RoboActivity {
 
 
     public void onClick(View view){
-        SharedPreferences preferences = getSharedPreferences("com.irononetech.persistencedemo", 0);
+        SharedPreferences preferences = getSharedPreferences("com.irononetech.PhotoShoppe", 0);
         String userNameStored = preferences.getString("user_name", "NONE");
         String passwordStored=preferences.getString("password","NONE");
 

@@ -4,5 +4,6 @@
     <string name="main_view_text_sign_in">If you do not have account please sign in </string>
     <string name="main_view_button_log_in">Log In</string>
     <string name="main_view_button_sign_in">Sign In </string>
+    <string name="title_activity_view_map_location">Map</string>
 
 </resources>

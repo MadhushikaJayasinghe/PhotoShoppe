@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.example.madhushikabasnayake.photoshoppe_madhushika.PhotographersList">
     <ListView
-        android:id="@+id/detail_list"
+        android:id="@+id/photographer_detail_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="5dp">

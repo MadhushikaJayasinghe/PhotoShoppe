@@ -12,9 +12,12 @@ import java.util.ArrayList;
  */
 
 public class DBHelper extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "Photographers.db";
+    public static final int DATABASE_VERSION = 1;
+    public static final String DATABASE_NAME = "photoshoppe.db";
+    public static final String DB_LOCATION="/data/data/com.example.madhushikabasnayake.photoshoppe_madhushika/databases/";
+
     private Context context;
+    private SQLiteDatabase sqLiteDatabase;
 
     public DBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -30,12 +33,29 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
     }
+
+    public void openDatabase(){
+        String dbpath =context.getDatabasePath(DATABASE_NAME).getPath();
+        if(sqLiteDatabase!=null && sqLiteDatabase.isOpen()){
+            return;
+        }
+        sqLiteDatabase=SQLiteDatabase.openDatabase(DB_LOCATION,null,SQLiteDatabase.OPEN_READWRITE);
+    }
+
+
+    public void closeDB(){
+        if(sqLiteDatabase!=null){
+            sqLiteDatabase.close();
+        }
+    }
+
+
     public Photographer[] getPhotographers(){
 
         SQLiteDatabase db = getReadableDatabase();
         ArrayList<Photographer> list = new ArrayList<>();
 
-        Cursor cursor = db.rawQuery("SELECT * FROM Photographer",null);
+        Cursor cursor = db.rawQuery("SELECT * FROM photographer",null);
 
         while (cursor.moveToNext()){
 

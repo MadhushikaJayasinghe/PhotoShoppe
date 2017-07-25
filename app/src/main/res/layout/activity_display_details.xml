@@ -45,10 +45,12 @@
                 android:layout_height="wrap_content"
                 android:text="Telephone:"/>
             <TextView
+                android:id="@+id/my_telephone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0765849256"
-                android:layout_marginLeft="10dp"/>
+                android:layout_marginLeft="10dp"
+                android:onClick="onClick"/>
         </LinearLayout>
         <LinearLayout
             android:layout_height="wrap_content"
@@ -59,10 +61,12 @@
                 android:layout_height="wrap_content"
                 android:text="Email:"/>
             <TextView
+                android:id="@+id/my_email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ruchirar@irononetech.com"
-                android:layout_marginLeft="10dp"/>
+                android:layout_marginLeft="10dp"
+                android:onClick="onClick"/>
         </LinearLayout>
         <Button
             android:id="@+id/view_location"
