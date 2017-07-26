@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 public class DisplayDetails extends AppCompatActivity {
@@ -66,13 +67,16 @@ public class DisplayDetails extends AppCompatActivity {
             boolean loginStatus= preferences.getBoolean("log_in_status", true);
             SharedPreferences.Editor editor=preferences.edit();
             editor.putBoolean("log_in_status",false);
-            Intent intent=new Intent(this,LogInActivity.class);
+            Intent intent=new Intent(this,FirstLayout.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
+            editor.commit();
         }
 
         else if(id==R.id.view_location){
             Intent intent=new Intent(this,viewMapLocationActivity.class);
             startActivity(intent);
         }
+
     }
 }

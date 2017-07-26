@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.madhushikabasnayake.photoshoppe_madhushika.NetworkActivities.JsonDownloadActivity;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -29,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         int id=view.getId();
 
         if(id == R.id.portfolio_button){
-            Intent intent =new Intent(this,ViewImageList.class);
+            Intent intent =new Intent(this,JsonDownloadActivity.class);
             startActivity(intent);
         }
         if(id==R.id.directory_button){

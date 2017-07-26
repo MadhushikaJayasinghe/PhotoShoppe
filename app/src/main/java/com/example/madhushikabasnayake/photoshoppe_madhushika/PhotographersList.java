@@ -75,10 +75,10 @@ public class PhotographersList extends RoboActivity {
             public View getView(int i, View convertView, ViewGroup viewGroup) {
 
                 Photographer photographer = usersList[i];
-                View cellUser = null;
+                View cellUser;
 
                 if(convertView == null){
-                    cellUser = LayoutInflater.from(PhotographersList.this).inflate(R.layout.detail_list_cell, null);
+                    cellUser = LayoutInflater.from(PhotographersList.this).inflate(R.layout.detail_list_cell,null);
                 }
                 else{
                     cellUser = convertView;
@@ -117,14 +117,15 @@ public class PhotographersList extends RoboActivity {
                 mobileTV.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        Toast.makeText(PhotographersList.this,"make call",Toast.LENGTH_SHORT).show();
                         Intent callIntent = new Intent(Intent.ACTION_CALL);
-                        callIntent.setData(Uri.parse(mobileTV.getText().toString()));
+                        callIntent.setData(Uri.parse("tel:"+mobileTV.getText().toString()));
 
                         if (ActivityCompat.checkSelfPermission(PhotographersList.this,
                                 Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                             return;
-                            }
-                            startActivity(callIntent);
+                        }
+                        startActivity(callIntent);
 
                     }
                 });

@@ -18,13 +18,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Enter user name"
-            android:padding="5dp"/>
+            android:padding="10dp"/>
         <EditText
             android:id="@+id/login_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Enter Password"
-            android:padding="5dp"/>
+            android:padding="10dp"/>
         <Button
             android:id="@+id/log_in"
             android:layout_height="wrap_content"

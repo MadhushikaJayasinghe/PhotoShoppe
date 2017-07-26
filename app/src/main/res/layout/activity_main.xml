@@ -8,17 +8,21 @@
     android:orientation="vertical"
     tools:context="com.example.madhushikabasnayake.photoshoppe_madhushika.MainActivity">
 
+    <!--<TextView-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:text="Welcome!"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:padding="5dp"-->
+        <!--android:textSize="35dp"/>-->
     <TextView
-        android:layout_height="wrap_content"
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
-        android:text="Welcome!"
+        android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:padding="5dp"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="PhotoShoppe"
-        android:layout_marginBottom="30dp"/>
+        android:textColor="@color/colorPrimary"
+        android:textSize="40dp" />
 
     <LinearLayout
         android:layout_width="wrap_content"
