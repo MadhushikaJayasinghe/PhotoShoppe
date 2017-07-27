@@ -19,14 +19,13 @@ import java.util.HashMap;
 
 public class JsonDownloadActivity extends AppCompatActivity {
     private String TAG = JsonDownloadActivity.class.getSimpleName();
-
     private ProgressDialog pDialog;
     private ListView listView;
     public String[] idList;
     public String[] urlList;
 
     // URL to get contacts JSON
-    private static String url = "https://api.flickr.com/services/feeds/photos_public.gne?id=26156338@N07&format=json";
+    private static String url = "https://api.flickr.com/services/feeds/photos_public.gne?id=26156338@N07&format=json&nojsoncallback=1";
     //http://api.androidhive.info/contacts/
 
 
@@ -34,6 +33,7 @@ public class JsonDownloadActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_json_download);
+        listView=(ListView)findViewById(R.id.image_list);
         idList=new String[10];
         urlList=new String[10];
         new GetJson().execute();
@@ -62,19 +62,17 @@ public class JsonDownloadActivity extends AppCompatActivity {
 
             if (jsonStr != null) {
                 try {
-                    JSONObject jsonObj = new JSONObject(jsonStr);
+                    JSONObject jsonObject = new JSONObject(jsonStr);
 
-                    // Getting JSON Array node
-                    JSONObject jsonObject = jsonObj.getJSONObject("jsonFlickrFeed");
-                    JSONArray photos=new JSONArray(jsonObject.getJSONArray("items"));
+                    //JSONObject jsonObject = jsonObj.getJSONObject("jsonFlickrFeed");
+                    JSONArray photos=jsonObject.getJSONArray("items");
 
                         for (int i = 0; i < 10; i++) {
                             JSONObject c = photos.getJSONObject(i);
 
-                            String imgLink = c.getString("m");
-//                            idList[i]=id;
-//                            Log.d("id",id);
-                            //String imageUrl="https://www.flickr.com/photos/iwonapodlasinska/"+id;
+                            JSONObject imgLinkjson = c.getJSONObject("media");
+                            String imgLink= imgLinkjson.getString("m");
+
                             urlList[i]=imgLink;
                         }
                     }// looping through All Contacts
@@ -117,8 +115,8 @@ public class JsonDownloadActivity extends AppCompatActivity {
                 pDialog.dismiss();
 
             }
-            ListView listView=(ListView)findViewById(R.id.image_list);
-            listView.setAdapter(new ImageListAdapter(JsonDownloadActivity.this, result));
+            ImageListAdapter imageListAdapter=new ImageListAdapter(getApplicationContext(),R.layout.activity_image_list_adapter,result);
+            listView.setAdapter(imageListAdapter);
         }
     }
 }

@@ -10,9 +10,8 @@
 
     <ImageView
         android:id="@+id/image_viewed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/ic_launcher"/>
+        android:layout_width="300dp"
+        android:layout_height="300dp" />
 
     <LinearLayout
         android:layout_height="wrap_content"
@@ -20,22 +19,21 @@
         android:orientation="horizontal"
         android:layout_below="@id/image_viewed"
         android:gravity="center">
-        <Button
+        <ImageButton
             android:id="@+id/attached_email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_weight="1"
-            android:text="Email"
+            android:src="@drawable/emai_icon_small"
             android:onClick="onClick"/>
 
         <Button
             android:id="@+id/go_to_website"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="50dp"
             android:layout_weight="1"
-            android:text="Go to website"
+            android:text="View Web"
             android:onClick="onClick"/>
         </LinearLayout>
 </LinearLayout>

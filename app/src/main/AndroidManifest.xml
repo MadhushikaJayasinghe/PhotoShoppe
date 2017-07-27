@@ -20,7 +20,7 @@
         android:roundIcon="@drawable/app_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".BasicActivities.MainActivity">
 
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->
@@ -29,8 +29,8 @@
             <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
             <!-- </intent-filter> -->
         </activity>
-        <activity android:name=".LogInActivity" />
-        <activity android:name=".InitialActivity" />
+        <activity android:name=".BasicActivities.LogInActivity" />
+        <activity android:name=".BasicActivities.InitialActivity" />
         <!-- <intent-filter> -->
         <!-- <action android:name="android.intent.action.MAIN" /> -->
 
@@ -42,7 +42,7 @@
         ]]>
         <activity android:name=".ViewImage" />
         <activity android:name=".ViewImageWithButtons" />
-        <activity android:name=".PhotographersList" />
+        <activity android:name=".DBActivities.PhotographersList" />
         <activity android:name=".DisplayDetails" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -59,7 +59,7 @@
         <activity
             android:name=".viewMapLocationActivity"
             android:label="@string/title_activity_view_map_location" />
-        <activity android:name=".FirstLayout">
+        <activity android:name=".BasicActivities.FirstLayout">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

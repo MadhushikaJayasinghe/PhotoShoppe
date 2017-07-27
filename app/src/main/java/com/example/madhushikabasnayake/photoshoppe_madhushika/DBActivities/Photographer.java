@@ -1,4 +1,4 @@
-package com.example.madhushikabasnayake.photoshoppe_madhushika;
+package com.example.madhushikabasnayake.photoshoppe_madhushika.DBActivities;
 
 /**
  * Created by madhushikabasnayake on 7/24/17.

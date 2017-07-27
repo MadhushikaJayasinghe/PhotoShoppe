@@ -1,6 +1,8 @@
 package com.example.madhushikabasnayake.photoshoppe_madhushika.NetworkActivities;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 
 import com.example.madhushikabasnayake.photoshoppe_madhushika.R;
+import com.example.madhushikabasnayake.photoshoppe_madhushika.ViewImage;
 import com.squareup.picasso.Picasso;
 
 public class ImageListAdapter extends ArrayAdapter {
@@ -17,7 +20,7 @@ public class ImageListAdapter extends ArrayAdapter {
     private LayoutInflater inflater;
     private String[] imageUrls;
 
-    public ImageListAdapter(Context context, String[] imageUrls) {
+    public ImageListAdapter(Context context, int activity_image_list_adapter, String[] imageUrls) {
         super(context, R.layout.activity_image_list_adapter, imageUrls);
 
         this.context = context;
@@ -27,15 +30,28 @@ public class ImageListAdapter extends ArrayAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         if (null == convertView) {
+            LayoutInflater inflater = (LayoutInflater)getContext().getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+            //convertView = inflater.inflate(R.layout.activity_image_list_adapter, parent, false);
             convertView = inflater.inflate(R.layout.activity_image_list_adapter, parent, false);
         }
 
         Picasso.with(context)
                 .load(imageUrls[position])
-                .into((ImageView) convertView);
-
+                .placeholder(R.drawable.waiting_loading_image)
+                        .error(R.drawable.error_loading_image)
+                .into((ImageView) convertView.findViewById(R.id.image_view_cell));
+        convertView.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Intent intent=new Intent(context, ViewImage.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.putExtra("url",imageUrls[position]);
+            //intent.putExtra("position",position);
+            context.startActivity(intent);
+    }
+});
 
         return convertView;
     }

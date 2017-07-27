@@ -1,4 +1,4 @@
-package com.example.madhushikabasnayake.photoshoppe_madhushika;
+package com.example.madhushikabasnayake.photoshoppe_madhushika.DBActivities;
 
 import android.content.Context;
 import android.database.Cursor;

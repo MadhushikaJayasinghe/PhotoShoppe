@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorcell">
+    android:layout_marginLeft="20dp"
+    android:background="@color/colorNormalCell">
 
     <LinearLayout
         android:layout_marginTop="10dp"
@@ -10,7 +11,12 @@
         android:layout_width="wrap_content"
         android:orientation="horizontal"
         android:padding="5dp">
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name:"
+            android:textSize="20dp"
+            android:textStyle="bold"/>
         <TextView
             android:id="@+id/list_first_name"
             android:layout_width="wrap_content"
@@ -20,21 +26,44 @@
             android:id="@+id/list_last_name"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:textSize="20dp"/>
+            android:textSize="20dp"
+            android:layout_marginLeft="10dp"/>
 
     </LinearLayout>
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5dp">
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/phone_icon"/>
+
     <TextView
         android:id="@+id/list_telephone_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
         android:textSize="20dp"
-        android:padding="5dp"/>
+        />
+        </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5dp">
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/email_button"/>
     <TextView
         android:id="@+id/list_email_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20dp"
-        android:padding="5dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginBottom="20dp"/>
+    </LinearLayout>
 
 </LinearLayout>

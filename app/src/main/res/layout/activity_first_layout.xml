@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:background="@drawable/background"
-    tools:context="com.example.madhushikabasnayake.photoshoppe_madhushika.FirstLayout">
+    tools:context="com.example.madhushikabasnayake.photoshoppe_madhushika.BasicActivities.FirstLayout">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
