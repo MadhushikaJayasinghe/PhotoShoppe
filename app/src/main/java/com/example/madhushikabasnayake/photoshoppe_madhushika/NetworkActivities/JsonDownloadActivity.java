@@ -65,23 +65,21 @@ public class JsonDownloadActivity extends AppCompatActivity {
                     JSONObject jsonObj = new JSONObject(jsonStr);
 
                     // Getting JSON Array node
-                    JSONArray jsonArray = jsonObj.getJSONArray("jsonFlickrFeed");
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject object = jsonArray.getJSONObject(i);
-                        JSONArray photos=new JSONArray(object.getJSONArray("items"));
-                        for (int j = 0; j < 10; j++) {
+                    JSONObject jsonObject = jsonObj.getJSONObject("jsonFlickrFeed");
+                    JSONArray photos=new JSONArray(jsonObject.getJSONArray("items"));
+
+                        for (int i = 0; i < 10; i++) {
                             JSONObject c = photos.getJSONObject(i);
 
-                            String link = c.getString("link");
+                            String imgLink = c.getString("m");
 //                            idList[i]=id;
 //                            Log.d("id",id);
                             //String imageUrl="https://www.flickr.com/photos/iwonapodlasinska/"+id;
-                            urlList[i]=link;
-
+                            urlList[i]=imgLink;
                         }
                     }// looping through All Contacts
-
-                } catch (final JSONException e) {
+                catch (final JSONException e) {
+                    e.printStackTrace();
                     Log.e(TAG, "Json parsing error: " + e.getMessage());
                     runOnUiThread(new Runnable() {
                         @Override
