@@ -26,7 +26,7 @@ public class JsonDownloadActivity extends AppCompatActivity {
     public String[] urlList;
 
     // URL to get contacts JSON
-    private static String url = "https://api.flickr.com/services/rest/?method=flickr.people.getPhotos&api_key=e092219e549a3ef169b692521e692cb9&user_id=116475418%40N03&format=json&nojsoncallback=1&api_sig=e6c121e82acfd5e9c3439731348ea495";
+    private static String url = "https://api.flickr.com/services/feeds/photos_public.gne?id=26156338@N07&format=json";
     //http://api.androidhive.info/contacts/
 
 
@@ -40,7 +40,7 @@ public class JsonDownloadActivity extends AppCompatActivity {
 
     }
 
-    private class GetJson extends AsyncTask<Void, Void, Void> {
+    private class GetJson extends AsyncTask<Void, Void, String[]> {
 
         @Override
         protected void onPreExecute() {
@@ -54,7 +54,7 @@ public class JsonDownloadActivity extends AppCompatActivity {
         }
 
         @Override
-        protected Void doInBackground(Void... arg0) {
+        protected String[] doInBackground(Void... arg0) {
             HttpHandler sh = new HttpHandler();
             String jsonStr = sh.makeServiceCall(url);
             Log.e(TAG, "Response from url: " + jsonStr);
@@ -65,18 +65,22 @@ public class JsonDownloadActivity extends AppCompatActivity {
                     JSONObject jsonObj = new JSONObject(jsonStr);
 
                     // Getting JSON Array node
-                    JSONArray contacts = jsonObj.getJSONArray("photos");
+                    JSONArray jsonArray = jsonObj.getJSONArray("jsonFlickrFeed");
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject object = jsonArray.getJSONObject(i);
+                        JSONArray photos=new JSONArray(object.getJSONArray("items"));
+                        for (int j = 0; j < 10; j++) {
+                            JSONObject c = photos.getJSONObject(i);
 
-                    // looping through All Contacts
-                    for (int i = 0; i < 10; i++) {
-                        JSONObject c = contacts.getJSONObject(i);
+                            String link = c.getString("link");
+//                            idList[i]=id;
+//                            Log.d("id",id);
+                            //String imageUrl="https://www.flickr.com/photos/iwonapodlasinska/"+id;
+                            urlList[i]=link;
 
-                        String id = c.getString("id");
-                        idList[i]=id;
-                        String imageUrl="https://www.flickr.com/photos/iwonapodlasinska/"+id;
-                        urlList[i]=imageUrl;
+                        }
+                    }// looping through All Contacts
 
-                    }
                 } catch (final JSONException e) {
                     Log.e(TAG, "Json parsing error: " + e.getMessage());
                     runOnUiThread(new Runnable() {
@@ -104,11 +108,11 @@ public class JsonDownloadActivity extends AppCompatActivity {
 
             }
 
-            return null;
+            return urlList;
         }
 
         @Override
-        protected void onPostExecute(Void result) {
+        protected void onPostExecute(String[] result) {
             super.onPostExecute(result);
             // Dismiss the progress dialog
             if (pDialog.isShowing()) {
@@ -116,7 +120,7 @@ public class JsonDownloadActivity extends AppCompatActivity {
 
             }
             ListView listView=(ListView)findViewById(R.id.image_list);
-            listView.setAdapter(new ImageListAdapter(JsonDownloadActivity.this, urlList));
+            listView.setAdapter(new ImageListAdapter(JsonDownloadActivity.this, result));
         }
     }
 }

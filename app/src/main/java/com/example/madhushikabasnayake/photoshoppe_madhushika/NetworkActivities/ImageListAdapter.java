@@ -34,8 +34,6 @@ public class ImageListAdapter extends ArrayAdapter {
 
         Picasso.with(context)
                 .load(imageUrls[position])
-                .placeholder(R.drawable.waiting_loading_image)
-                .error(R.drawable.error_loading_image)
                 .into((ImageView) convertView);
 
 

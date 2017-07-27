@@ -1,6 +1,7 @@
 package com.example.madhushikabasnayake.photoshoppe_madhushika;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -23,7 +24,7 @@ import roboguice.activity.RoboActivity;
 import roboguice.inject.InjectView;
 
 public class PhotographersList extends RoboActivity {
-
+private Context context;
    // DBHelper dbHelper=new DBHelper(this);
 
 //    @Override
@@ -145,7 +146,6 @@ public class PhotographersList extends RoboActivity {
 
                         try {
                             startActivity(Intent.createChooser(emailIntent, "Send mail..."));
-                            finish();
                             Log.i("Finished sending email...", "");
                         } catch (android.content.ActivityNotFoundException ex) {
 

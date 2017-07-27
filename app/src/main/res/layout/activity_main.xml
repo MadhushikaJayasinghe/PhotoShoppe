@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
+    android:background="@drawable/background"
     tools:context="com.example.madhushikabasnayake.photoshoppe_madhushika.MainActivity">
 
     <!--<TextView-->
@@ -17,22 +18,25 @@
         <!--android:textSize="35dp"/>-->
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
         android:text="PhotoShoppe"
         android:textColor="@color/colorPrimary"
         android:textSize="40dp" />
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_marginTop="200dp">
         <Button
             android:id="@+id/portfolio_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Portfolio"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="50dp"
             android:padding="5dp"
             android:onClick="onClick"/>
         <Button
@@ -50,7 +54,8 @@
             android:text="More.."
             android:layout_marginLeft="10dp"
             android:padding="5dp"
-            android:onClick="onClick"/>
+            android:onClick="onClick"
+            android:layout_marginRight="50dp"/>
     </LinearLayout>>
-</LinearLayout>
+</RelativeLayout>
 
