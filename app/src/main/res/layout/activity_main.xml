@@ -4,59 +4,62 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bck"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:background="@drawable/background"
     tools:context="com.example.madhushikabasnayake.photoshoppe_madhushika.BasicActivities.MainActivity">
 
     <!--<TextView-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:text="Welcome!"-->
-        <!--android:layout_marginTop="10dp"-->
-        <!--android:padding="5dp"-->
-        <!--android:textSize="35dp"/>-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:text="Welcome!"-->
+    <!--android:layout_marginTop="10dp"-->
+    <!--android:padding="5dp"-->
+    <!--android:textSize="35dp"/>-->
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:gravity="center"
-        android:text="PhotoShoppe"
-        android:textColor="@color/colorPrimary"
+        android:text="Photo Shoppe"
+        android:textColor="@color/colorLimeGreen"
         android:textSize="40dp" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView"
-        android:gravity="center"
-        android:layout_marginTop="200dp">
+        android:layout_marginTop="200dp"
+        android:gravity="center">
+
         <Button
             android:id="@+id/portfolio_button"
             android:layout_width="90dp"
             android:layout_height="wrap_content"
-            android:text="Portfolio"
             android:layout_marginLeft="50dp"
+            android:onClick="onClick"
             android:padding="5dp"
-            android:onClick="onClick"/>
+            android:text="Portfolio" />
+
         <Button
             android:id="@+id/directory_button"
             android:layout_width="90dp"
             android:layout_height="wrap_content"
-            android:text="Directory"
             android:layout_marginLeft="10dp"
+            android:onClick="onClick"
             android:padding="5dp"
-            android:onClick="onClick"/>
+            android:text="Directory" />
+
         <Button
             android:id="@+id/more_button"
             android:layout_width="90dp"
             android:layout_height="wrap_content"
-            android:text="More.."
             android:layout_marginLeft="10dp"
-            android:padding="5dp"
+            android:layout_marginRight="50dp"
             android:onClick="onClick"
-            android:layout_marginRight="50dp"/>
-    </LinearLayout>>
+            android:padding="5dp"
+            android:text="More" />
+    </LinearLayout>
 </RelativeLayout>
 

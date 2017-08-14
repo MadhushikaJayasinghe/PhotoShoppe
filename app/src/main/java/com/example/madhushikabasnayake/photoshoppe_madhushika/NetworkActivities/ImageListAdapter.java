@@ -10,21 +10,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.madhushikabasnayake.photoshoppe_madhushika.R;
 import com.example.madhushikabasnayake.photoshoppe_madhushika.ViewImage;
 import com.squareup.picasso.Picasso;
 
-public class ImageListAdapter extends ArrayAdapter {
+import java.io.Serializable;
+
+public class ImageListAdapter extends ArrayAdapter implements Serializable {
     private Context context;
     private LayoutInflater inflater;
-    private String[] imageUrls;
+    private Image[] imageList;
 
-    public ImageListAdapter(Context context, int activity_image_list_adapter, String[] imageUrls) {
-        super(context, R.layout.activity_image_list_adapter, imageUrls);
+    public ImageListAdapter(Context context, int activity_image_list_adapter, Image[] imageList) {
+        super(context, R.layout.activity_image_list_adapter, imageList);
 
         this.context = context;
-        this.imageUrls = imageUrls;
+        this.imageList = imageList;
 
         inflater = LayoutInflater.from(context);
     }
@@ -36,18 +39,23 @@ public class ImageListAdapter extends ArrayAdapter {
             //convertView = inflater.inflate(R.layout.activity_image_list_adapter, parent, false);
             convertView = inflater.inflate(R.layout.activity_image_list_adapter, parent, false);
         }
-
+        TextView textView=(TextView) convertView.findViewById(R.id.image_name_text);
+        textView.setText(imageList[position].getTitle());
         Picasso.with(context)
-                .load(imageUrls[position])
+                .load(imageList[position].getPngUrl())
                 .placeholder(R.drawable.waiting_loading_image)
                         .error(R.drawable.error_loading_image)
                 .into((ImageView) convertView.findViewById(R.id.image_view_cell));
+
         convertView.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             Intent intent=new Intent(context, ViewImage.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.putExtra("url",imageUrls[position]);
+            intent.putExtra("imgurl",imageList[position].getPngUrl());
+            intent.putExtra("weburl",imageList[position].getWebUrl());
+            intent.putExtra("position",position);
+            intent.putExtra("imageDetailsArray",imageList);
             //intent.putExtra("position",position);
             context.startActivity(intent);
     }

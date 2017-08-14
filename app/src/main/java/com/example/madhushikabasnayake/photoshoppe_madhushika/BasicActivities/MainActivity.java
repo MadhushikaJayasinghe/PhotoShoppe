@@ -15,24 +15,24 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
+        setContentView(R.layout.activity_main);
     }
 
 
-    public void onClick(View view){
-        int id=view.getId();
+    public void onClick(View view) {
+        int id = view.getId();
 
-        if(id == R.id.portfolio_button){
-            Intent intent =new Intent(this,JsonDownloadActivity.class);
+        if (id == R.id.portfolio_button) {
+            Intent intent = new Intent(this, JsonDownloadActivity.class);
             startActivity(intent);
         }
-        if(id==R.id.directory_button){
-            Intent intent=new Intent(this,PhotographersList.class);
+        if (id == R.id.directory_button) {
+            Intent intent = new Intent(this, PhotographersList.class);
             startActivity(intent);
         }
-        if(id==R.id.more_button){
-            Intent intent=new Intent(this,DisplayDetails.class);
+        if (id == R.id.more_button) {
+            Intent intent = new Intent(this, DisplayDetails.class);
             startActivity(intent);
         }
     }

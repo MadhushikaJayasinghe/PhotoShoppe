@@ -24,9 +24,10 @@ public class HttpHandler {
 
     public String makeServiceCall(String reqUrl) {
         String response = null;
+        HttpURLConnection conn=null;
         try {
             URL url = new URL(reqUrl);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
             conn.connect();
             // read the response
@@ -41,7 +42,12 @@ public class HttpHandler {
         } catch (Exception e) {
             Log.e(TAG, "Exception: " + e.getMessage());
         }
-        return response;
+        finally {
+            conn.disconnect();
+
+            return response;
+
+        }
     }
 
     private String convertStreamToString(InputStream is) {

@@ -2,11 +2,14 @@ package com.example.madhushikabasnayake.photoshoppe_madhushika.DBActivities;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,42 +19,41 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.madhushikabasnayake.photoshoppe_madhushika.DisplayDetails;
 import com.example.madhushikabasnayake.photoshoppe_madhushika.R;
 
 import roboguice.activity.RoboActivity;
+import roboguice.inject.ContentView;
 import roboguice.inject.InjectView;
 
-public class PhotographersList extends RoboActivity {
-private Context context;
-   // DBHelper dbHelper=new DBHelper(this);
+import static android.app.PendingIntent.getActivity;
 
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
+//@ContentView(R.layout.activity_photographers_list)
+public class PhotographersList extends AppCompatActivity {
 
+    //@InjectView(R.id.photographer_detail_list)
+    ListView listView;
 
-//        ArrayAdapter adapter=new ArrayAdapter(this,R.layout.detail_list_cell,dbHelper.getPhotographers());
-//        ListView listView=(ListView)findViewById(R.id.photographer_detail_list);
-//        listView.setAdapter(adapter);
+    private Context context;
 
 
-
-
-    public class Placeholder{
+    public class Placeholder {
         public TextView firstnameTV;
         public TextView lastnameTV;
         public TextView mobileTV;
         public TextView emailTV;
     }
 
-    @InjectView(R.id.photographer_detail_list) ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photographers_list);
-
+        listView = (ListView) findViewById(R.id.photographer_detail_list);
         DBHelper handler = new DBHelper(this);
+
+
         final Photographer[] usersList = handler.getPhotographers();
 
         listView.setAdapter(new BaseAdapter() {
@@ -62,24 +64,28 @@ private Context context;
 
             @Override
             public Object getItem(int i) {
-                return null;
+                return usersList[i];
             }
 
             @Override
             public long getItemId(int i) {
-                return 0;
+                return i;
             }
 
             @Override
             public View getView(int i, View convertView, ViewGroup viewGroup) {
 
                 Photographer photographer = usersList[i];
-                View cellUser;
+                View cellUser = null;
 
-                if(convertView == null){
-                    cellUser = LayoutInflater.from(PhotographersList.this).inflate(R.layout.detail_list_cell,null);
-                }
-                else{
+                if (convertView == null) {
+                    cellUser = LayoutInflater.from(PhotographersList.this).inflate(R.layout.detail_list_cell, viewGroup, false);
+                    //cellUser = LayoutInflater.from(PhotographersList.this).inflate(getActivity(), R.layout.detail_list_cell, null);
+                    //cellUser = convertView.inflate(context, R.layout.detail_list_cell, null);
+                    //View.inflate(context, R.layout.dialog_edit, null);
+                    //convertView = infalInflater.inflate(R.layout.list_item, parent, false);
+                    //View.inflate(getActivity(), R.layout.dialog, null);
+                } else {
                     cellUser = convertView;
                 }
 
@@ -89,7 +95,7 @@ private Context context;
                 final TextView mobileTV;
                 final TextView emailTV;
 
-                if(ph == null){
+                if (ph == null) {
                     firstnameTV = (TextView) cellUser.findViewById(R.id.list_first_name);
                     lastnameTV = (TextView) cellUser.findViewById(R.id.list_last_name);
                     mobileTV = (TextView) cellUser.findViewById(R.id.list_telephone_number);
@@ -102,12 +108,11 @@ private Context context;
                     ph.emailTV = emailTV;
 
                     cellUser.setTag(ph);
-                }
-                else {
+                } else {
                     firstnameTV = ph.firstnameTV;
                     lastnameTV = ph.lastnameTV;
                     mobileTV = ph.mobileTV;
-                    emailTV=ph.emailTV;
+                    emailTV = ph.emailTV;
                 }
 
                 firstnameTV.setText(photographer.firstName);
@@ -116,15 +121,34 @@ private Context context;
                 mobileTV.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(PhotographersList.this,"make call",Toast.LENGTH_SHORT).show();
-                        Intent callIntent = new Intent(Intent.ACTION_CALL);
-                        callIntent.setData(Uri.parse("tel:"+mobileTV.getText().toString()));
 
-                        if (ActivityCompat.checkSelfPermission(PhotographersList.this,
-                                Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                            return;
-                        }
-                        startActivity(callIntent);
+                        AlertDialog.Builder builder = new AlertDialog.Builder(PhotographersList.this);
+                        builder.setTitle("Make a call?");
+                        builder.setMessage("Do you want to call " + mobileTV.getText().toString() + "?");
+                        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.dismiss();
+                                Intent callIntent = new Intent(Intent.ACTION_CALL);
+                                callIntent.setData(Uri.parse("tel:" + mobileTV.getText().toString()));
+
+                                if (ActivityCompat.checkSelfPermission(PhotographersList.this,
+                                        Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                                    return;
+                                }
+                                startActivity(callIntent);
+                                // User clicked OK button
+                            }
+                        });
+                        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.dismiss();
+                                // User cancelled the dialog
+                            }
+                        });
+
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+
 
                     }
                 });
@@ -133,18 +157,18 @@ private Context context;
                 emailTV.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Log.i("Send email", "");
+                        //Log.i("Send email", "");
                         String[] TO = {emailTV.getText().toString()};
                         Intent emailIntent = new Intent(Intent.ACTION_SEND);
 
                         emailIntent.setData(Uri.parse("mailto:"));
                         emailIntent.setType("text/plain");
                         emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
-                        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Hello"+firstnameTV.getText().toString()+"");
+                        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Hello " + firstnameTV.getText().toString() + "");
 
                         try {
                             startActivity(Intent.createChooser(emailIntent, "Send mail..."));
-                            Log.i("Finished sending email...", "");
+                            //Log.i("Finished sending email...", "");
                         } catch (android.content.ActivityNotFoundException ex) {
 
                         }

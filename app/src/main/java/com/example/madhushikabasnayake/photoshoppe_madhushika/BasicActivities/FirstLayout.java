@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.madhushikabasnayake.photoshoppe_madhushika.DBActivities.DBHelper;
@@ -23,56 +24,54 @@ public class FirstLayout extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_first_layout);
         SharedPreferences preferences = getSharedPreferences("com.irononetech.PhotoShoppe", 0);
-        if(!preferences.getBoolean("log_in_status",false)){
-            setContentView(R.layout.activity_first_layout);
-        }
-        else {
-            setContentView(R.layout.activity_main);
+        Button log_in_Btn=(Button)findViewById(R.id.first_log_in_button);
+        Button sign_in_Btn=(Button)findViewById(R.id.first_sign_in_button);
+
+        log_in_Btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(FirstLayout.this, LogInActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+
+            }
+        });
+        sign_in_Btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(FirstLayout.this, InitialActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+
+            }
+        });
+        if (preferences.getBoolean("log_in_status", false)) {
+            Intent intent =new Intent(this,MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP );
+
+            startActivity(intent);
+            finish();
+
         }
 
-        File database=getApplicationContext().getDatabasePath(dbHelper.DATABASE_NAME);
-        if(database.exists()==false){
+        File database = getApplicationContext().getDatabasePath(dbHelper.DATABASE_NAME);
+        if (database.exists() == false) {
             dbHelper.getReadableDatabase();
-            if(copyDatabase(this)){
-                Toast.makeText(this,"copy database success",Toast.LENGTH_SHORT).show();
-            }else{
-                Toast.makeText(this,"copy database error",Toast.LENGTH_SHORT).show();
+            if (copyDatabase(this)) {
+//                Toast.makeText(this, "copy database success", Toast.LENGTH_SHORT).show();
+            } else {
+//                Toast.makeText(this, "copy database error", Toast.LENGTH_SHORT).show();
                 return;
             }
-        }else{
-            Toast.makeText(this,"copy database",Toast.LENGTH_SHORT).show();
+        } else {
+            //Toast.makeText(this,"copy database",Toast.LENGTH_SHORT).show();
         }
     }
 
 
-    public void onClick(View view){
-        int id=view.getId();
-        SharedPreferences preferences = getSharedPreferences("com.irononetech.PhotoShoppe", 0);
-        //SharedPreferences.Editor editor = preferences.edit();
 
-        if(!preferences.getBoolean("log_in_status",false)) {
-
-            if (id == R.id.first_sign_in_button) {
-//                Button button=(Button)findViewById(R.id.first_sign_in_button);
-//                button.setVisibility(button.GONE);
-                Intent intent = new Intent(this, InitialActivity.class);
-                //intent.setFlags(intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-                finish();
-            } else if (id == R.id.first_log_in_button) {
-                //Button button=(Button)findViewById(R.id.first_log_in_button);
-                Intent intent = new Intent(this, LogInActivity.class);
-                //intent.setFlags(intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-                finish();
-            }
-        }
-        else{
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-        }
-    }
 
     private boolean copyDatabase(Context context) {
         try {

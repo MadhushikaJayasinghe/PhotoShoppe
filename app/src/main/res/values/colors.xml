@@ -3,6 +3,19 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="colorcell">#FFe8e8</color>
+    <color name="colorcell">#64FFe8e8</color>
     <color name="colorNormalCell">#4fc6f1</color>
+    <color name="colorRed">#ff0000</color>
+    <color name="colorDarkGreen">#006400</color>
+    <color name="colorLimeGreen">#010d03</color>
+    <color name="colorLimeGreen1">#82af82</color>
+    <color name="colorLWhite">#ffffff</color>
+    <color name="colorTextBox">#ccf1b9</color>
+    <color name="colorImageCell">#769176</color>
+    <color name="colorImageView">#748774</color>
+    <color name="colorImageButton">#737e73</color>
+    <color name="colorPList">#32babcba</color>
+    <color name="colorTransparent">#00FFFFFF</color>
+    <color name="colorPink">#010e0e</color>
+    <color name="colorDarkBlue">#010941</color>
 </resources>

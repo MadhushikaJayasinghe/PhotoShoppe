@@ -4,94 +4,148 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/more_background"
+    android:background="@drawable/bcg2"
     tools:context="com.example.madhushikabasnayake.photoshoppe_madhushika.DisplayDetails">
+
     <Button
         android:id="@+id/log_out"
-        android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:text="Log Out"
+        android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:onClick="onClick"/>
+        android:onClick="onClick"
+        android:text="Log Out" />
 
     <LinearLayout
-        android:layout_height="wrap_content"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:gravity="center_vertical"
         android:orientation="vertical"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true">
+        android:padding="5dp">
 
         <LinearLayout
-            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="5dp"
                 android:text="Address:"
-                android:textSize="20dp"
-                android:padding="5dp"
-                android:textStyle="bold"/>
-            <TextView
+                android:textColor="@color/colorPink"
+                android:textSize="23dp"
+                android:textStyle="bold" />
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="No 60, Moratuwa"
-                android:textSize="20dp"
-                android:padding="5dp"
-                android:layout_marginLeft="10dp"/>
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:padding="5dp"
+                    android:text="No 48,"
+                    android:textColor="@color/colorPink"
+                    android:textSize="23dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="IBM Building,"
+                    android:textColor="@color/colorPink"
+                    android:textSize="23dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="Nawam Mawatha,"
+                    android:textColor="@color/colorPink"
+                    android:layout_marginTop="5dp"
+                    android:textSize="23dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:padding="5dp"
+                    android:text="Colombo"
+                    android:textColor="@color/colorPink"
+                    android:textSize="23dp" />
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
-            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Telephone:"
-                android:textSize="20dp"
                 android:padding="5dp"
-                android:textStyle="bold"/>
+                android:text="Telephone:"
+                android:textColor="@color/colorPink"
+                android:textSize="23dp"
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/my_telephone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0765849256"
-                android:textSize="20dp"
-                android:padding="5dp"
                 android:layout_marginLeft="10dp"
-                android:onClick="onClick"/>
+                android:onClick="onClick"
+                android:padding="5dp"
+                android:textColor="@color/colorPink"
+                android:text="0765849256"
+                android:textSize="23dp" />
         </LinearLayout>
+
         <LinearLayout
-            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Email:"
-                android:textSize="20dp"
                 android:padding="5dp"
-                android:textStyle="bold"/>
+                android:text="Email:"
+                android:textColor="@color/colorPink"
+                android:textSize="23dp"
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/my_email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ruchirar@irononetech.com"
-                android:textSize="20dp"
                 android:layout_marginLeft="10dp"
+                android:onClick="onClick"
                 android:padding="5dp"
-                android:onClick="onClick"/>
+                android:text="ruchirar@irononetech.com"
+                android:textColor="@color/colorPink"
+                android:textSize="20dp" />
         </LinearLayout>
-        <Button
-            android:id="@+id/view_location"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="view location"
-            android:textSize="25dp"
-            android:onClick="onClick"
-            android:padding="10dp"/>
+
     </LinearLayout>
+
+    <Button
+        android:id="@+id/view_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:onClick="onClick"
+        android:padding="10dp"
+        android:text="view location"
+        android:textSize="25dp" />
 
 </RelativeLayout>

@@ -3,8 +3,10 @@ package com.example.madhushikabasnayake.photoshoppe_madhushika.BasicActivities;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.madhushikabasnayake.photoshoppe_madhushika.R;
@@ -16,9 +18,13 @@ import roboguice.inject.InjectView;
 @ContentView(R.layout.activity_initial)
 public class InitialActivity extends RoboActivity {
 
-    @InjectView(R.id.initial_name) private EditText userNameTxt;
-    @InjectView(R.id.initial_email) private EditText emailTxt;
-    @InjectView(R.id.initial_password) private EditText passwordTxt;
+    @InjectView(R.id.initial_name)
+    private EditText userNameTxt;
+    @InjectView(R.id.initial_email)
+    private EditText emailTxt;
+    @InjectView(R.id.initial_password)
+    private EditText passwordTxt;
+    @InjectView(R.id.password_strong_text) private TextView passwordErrorTxt;
 
 //    DBHelper dbHelper = new DBHelper(this);
 
@@ -26,34 +32,6 @@ public class InitialActivity extends RoboActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        File database=getApplicationContext().getDatabasePath(dbHelper.DATABASE_NAME);
-//        if(false==database.exists()){
-//            dbHelper.getReadableDatabase();
-//            if(copyDatabase(this)){
-//                Toast.makeText(this,"copy database success",Toast.LENGTH_SHORT).show();
-//            }else{
-//                Toast.makeText(this,"copy database error",Toast.LENGTH_SHORT).show();
-//                return;
-//            }
-//        }
-
-
-//        SharedPreferences pref = getSharedPreferences("com.irononetech.PhotoShoppe", 0);
-//
-//        if(pref.getBoolean("activity_executed", false)){
-//        } else {
-//            SharedPreferences.Editor ed = pref.edit();
-//            ed.putBoolean("activity_executed", true);
-//
-//            if(pref.getBoolean("log_in_status",true)) {
-//                Intent intent = new Intent(this, MainActivity.class);
-//                startActivity(intent);
-//            }else{
-//                Intent intent = new Intent(this, LogInActivity.class);
-//                startActivity(intent);
-//            }
-//            ed.commit();
-//        }
     }
 
 
@@ -62,48 +40,68 @@ public class InitialActivity extends RoboActivity {
         SharedPreferences.Editor editor = preferences.edit();
 
 
-        if (userNameTxt.getText().toString().equals("") || emailTxt.getText().toString().equals("") || passwordTxt.getText().toString().equals("")){
-            Toast.makeText(this,"You should fill all fields",Toast.LENGTH_SHORT);
+        if (userNameTxt.getText().toString().equals("") || emailTxt.getText().toString().equals("") || passwordTxt.getText().toString().equals("")) {
+            //Toast.makeText(this,"You should fill all fields",Toast.LENGTH_SHORT);
+            if (userNameTxt.getText().toString().equals("")) {
+                userNameTxt.setHint(getResources().getString(R.string.sign_in_name_blank));
+                userNameTxt.setHintTextColor(getResources().getColor(R.color.colorRed));
+            }
+            if (emailTxt.getText().toString().equals("")) {
+                emailTxt.setHint(getResources().getString(R.string.sign_in_email_blank));
+                emailTxt.setHintTextColor(getResources().getColor(R.color.colorRed));
 
-//        }else if(emailTxt.getText()==null){
-//            Toast.makeText(this,"You should enter email",Toast.LENGTH_SHORT);
-//
-//        }else if(passwordTxt.getText()==null){
-//            Toast.makeText(this,"You should enter password",Toast.LENGTH_SHORT);
+            }
+            if (passwordTxt.getText().toString().equals("")) {
+                passwordTxt.setHint(getResources().getString(R.string.sign_in_password_blank));
+                passwordTxt.setHintTextColor(getResources().getColor(R.color.colorRed));
+            }
 
-        }else {
+
+        }
+        if(!isValidEmail(emailTxt.getText().toString())){
+            //Toast.makeText(this,"invalid email",Toast.LENGTH_SHORT).show();
+            emailTxt.setText("");
+            emailTxt.setHint(getResources().getString(R.string.sign_in_email_invalid));
+            emailTxt.setHintTextColor(getResources().getColor(R.color.colorRed));
+        }
+        if(!checkStrongPassword(passwordTxt.getText().toString())){
+            passwordErrorTxt.setTextColor(getResources().getColor(R.color.colorRed));
+        }
+        else {
             editor.putString("user_name", userNameTxt.getText().toString());
             editor.putString("email", emailTxt.getText().toString());
             editor.putString("password", passwordTxt.getText().toString());
-            editor.putBoolean("log_in_status",true);
+            editor.putBoolean("log_in_status", true);
+            Toast.makeText(this,"Your Registration was successful ",Toast.LENGTH_SHORT);
 
             editor.commit();
 
             Intent intent = new Intent(this, MainActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP );
             startActivity(intent);
+            this.finish();
 
         }
     }
+    public final static boolean isValidEmail(CharSequence target) {
+        //return !TextUtils.isEmpty(target) && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
+        return  android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
+    }
+    public boolean checkStrongPassword(String password){
+        boolean hasUppercase = !password.equals(password.toLowerCase());
+        boolean hasLowercase = !password.equals(password.toUpperCase());
+        boolean isAtLeast8   = password.length() >= 8;//Checks for at least 8 characters
+        boolean hasSpecial   = !password.matches("[A-Za-z0-9 ]*");
+        boolean found=false;
+        for(char c : password.toCharArray()){
+            if(Character.isDigit(c)){
+                found = true;
+            } else if(found){
+                // If we already found a digit before and this char is not a digit, stop looping
+                break;
+            }
+        }
 
-
-//    private boolean copyDatabase(Context context) {
-//        try {
-//            InputStream inputStream = context.getAssets().open(dbHelper.DATABASE_NAME);
-//            String outFileName = dbHelper.DB_LOCATION + dbHelper.DATABASE_NAME;
-//            OutputStream outputStream = new FileOutputStream(outFileName);
-//            byte[] buff = new byte[1024];
-//            int length = 0;
-//            while ((length = inputStream.read(buff)) > 0) {
-//                outputStream.write(buff, 0, length);
-//            }
-//            outputStream.flush();
-//            outputStream.close();
-//            Log.v("MainActivity", "DBCopied");
-//            return true;
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return false;
-//        }
-//    }
+        return hasUppercase && hasLowercase && isAtLeast8 && hasSpecial && found;
+    }
 }

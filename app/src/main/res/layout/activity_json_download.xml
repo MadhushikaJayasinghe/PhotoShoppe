@@ -10,7 +10,6 @@
         android:id="@+id/image_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="5dp">
-    </ListView>
+        android:padding="5dp"></ListView>
 
 </android.support.constraint.ConstraintLayout>

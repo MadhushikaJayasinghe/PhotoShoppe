@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bcg8"
     tools:context="com.example.madhushikabasnayake.photoshoppe_madhushika.ViewImage">
 
     <ImageView
         android:id="@+id/selected_image"
-        android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:onClick="onClick" />
+        android:layout_height="match_parent" />
+    <!--android:onClick="onClick" />-->
 
 </LinearLayout>

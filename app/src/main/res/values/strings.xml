@@ -1,9 +1,21 @@
 <resources>
-    <string name="app_name">PhotoShoppe</string>
+    <string name="app_name">Photo Shoppe</string>
     <string name="main_view_text_log_in">Hi, Login to continue...</string>
     <string name="main_view_text_sign_in">If you do not have account please sign in </string>
     <string name="main_view_button_log_in">Log In</string>
     <string name="main_view_button_sign_in">Sign In </string>
     <string name="title_activity_view_map_location">Map</string>
+    <string name="sign_error_alert">You Should Fill All Fields..</string>
+    <string name="sign_in_name_blank">Please enter your username. </string>
+    <string name="sign_in_email_blank">Please enter your email.</string>
+    <string name="sign_in_email_invalid">Please enter a valid email.</string>
+    <string name="sign_in_password_blank">Please enter your password </string>
+    <string name="log_in_error">Please enter correct username and password to continue</string>
+    <string name="log_in_name_error"> Please enter username </string>
+    <string name="log_in_password_error">Please enter password </string>
+    <string name="sign_in_txt">If You are new to PhotoShoppe register first </string>
+    <string name="log_in_txt">Log in to continue</string>
+
+
 
 </resources>

@@ -14,14 +14,14 @@ import java.util.ArrayList;
 public class DBHelper extends SQLiteOpenHelper {
     public static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "photoshoppe.db";
-    public static final String DB_LOCATION="/data/data/com.example.madhushikabasnayake.photoshoppe_madhushika/databases/";
+    public static final String DB_LOCATION = "/data/data/com.example.madhushikabasnayake.photoshoppe_madhushika/databases/";
 
     private Context context;
     private SQLiteDatabase sqLiteDatabase;
 
     public DBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-        this.context=context;
+        this.context = context;
     }
 
     @Override
@@ -34,38 +34,38 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
-    public void openDatabase(){
-        String dbpath =context.getDatabasePath(DATABASE_NAME).getPath();
-        if(sqLiteDatabase!=null && sqLiteDatabase.isOpen()){
+    public void openDatabase() {
+        String dbpath = context.getDatabasePath(DATABASE_NAME).getPath();
+        if (sqLiteDatabase != null && sqLiteDatabase.isOpen()) {
             return;
         }
-        sqLiteDatabase=SQLiteDatabase.openDatabase(DB_LOCATION,null,SQLiteDatabase.OPEN_READWRITE);
+        sqLiteDatabase = SQLiteDatabase.openDatabase(DB_LOCATION, null, SQLiteDatabase.OPEN_READWRITE);
     }
 
 
-    public void closeDB(){
-        if(sqLiteDatabase!=null){
+    public void closeDB() {
+        if (sqLiteDatabase != null) {
             sqLiteDatabase.close();
         }
     }
 
 
-    public Photographer[] getPhotographers(){
+    public Photographer[] getPhotographers() {
 
         SQLiteDatabase db = getReadableDatabase();
         ArrayList<Photographer> list = new ArrayList<>();
 
-        Cursor cursor = db.rawQuery("SELECT * FROM photographer",null);
+        Cursor cursor = db.rawQuery("SELECT * FROM photographer", null);
 
-        while (cursor.moveToNext()){
+        while (cursor.moveToNext()) {
 
             String firstName = cursor.getString(0);
             String lastName = cursor.getString(1);
             String telephone = cursor.getString(2);
-            String email=cursor.getString(3);
+            String email = cursor.getString(3);
 
 
-            Photographer aPhotographer = new Photographer(firstName, lastName, telephone,email);
+            Photographer aPhotographer = new Photographer(firstName, lastName, telephone, email);
             list.add(aPhotographer);
         }
 

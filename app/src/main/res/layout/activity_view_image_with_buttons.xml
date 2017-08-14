@@ -4,28 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="@drawable/bcg8"
     android:gravity="center"
+    android:orientation="vertical"
     tools:context="com.example.madhushikabasnayake.photoshoppe_madhushika.ViewImageWithButtons">
 
     <ImageView
         android:id="@+id/image_viewed"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="300dp" />
 
     <LinearLayout
-        android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:orientation="horizontal"
+        android:layout_height="wrap_content"
         android:layout_below="@id/image_viewed"
-        android:gravity="center">
-        <ImageButton
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
             android:id="@+id/attached_email"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/emai_icon_small"
-            android:onClick="onClick"/>
+            android:text="Email" />
 
         <Button
             android:id="@+id/go_to_website"
@@ -33,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
             android:layout_weight="1"
-            android:text="View Web"
-            android:onClick="onClick"/>
-        </LinearLayout>
+            android:text="View Web" />
+
+    </LinearLayout>
 </LinearLayout>
